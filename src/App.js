@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Header from "./Components/Header";
+import Product from "./Components/Product/Product";
+import Modal from "./Components/Modal/Modal";
+import Menu from "./Components/Menu";
+import { useProductContext } from "./context/ProductContext";
 
-function App() {
+const App = () => {
+  const { isModalOpen } = useProductContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={isModalOpen ? "app-container modal" : "app-container"}>
+      <main>
+        <Header />
+        <Product />
+      </main>
+
+      {isModalOpen ? <Modal /> : null}
     </div>
   );
-}
+};
 
 export default App;
